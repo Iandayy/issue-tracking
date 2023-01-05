@@ -10,7 +10,7 @@ const IssueStatus = () => {
   const issueAll = useRecoilValue(issueAllState);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center m-1">
       <ToDo todoIssue={issueAll.ToDo} />
       <Doing doingIssue={issueAll.Doing} />
       <Done doneIssue={issueAll.Done} />

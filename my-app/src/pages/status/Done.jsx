@@ -1,15 +1,8 @@
-import Card from "../../components/Card";
-import IssueItem from "../common/IssueItem";
+import useIssueStatus from "../../hooks/useIssueStatus";
 
 const Done = ({ doneIssue }) => {
-  return (
-    <Card>
-      <h2>Done</h2>
-      {doneIssue.map((issue) => (
-        <IssueItem key={Math.random()} issue={issue} />
-      ))}
-    </Card>
-  );
+  const DoneStatus = useIssueStatus({ title: "Done", issues: doneIssue });
+  return <>{DoneStatus}</>;
 };
 
 export default Done;

@@ -1,15 +1,8 @@
-import Card from "../../components/Card";
-import IssueItem from "../common/IssueItem";
+import useIssueStatus from "../../hooks/useIssueStatus";
 
 const Doing = ({ doingIssue }) => {
-  return (
-    <Card>
-      <h2>Doing</h2>
-      {doingIssue.map((issue) => (
-        <IssueItem key={Math.random()} issue={issue} />
-      ))}
-    </Card>
-  );
+  const DoingStatus = useIssueStatus({ title: "Doing", issues: doingIssue });
+  return <>{DoingStatus}</>;
 };
 
 export default Doing;

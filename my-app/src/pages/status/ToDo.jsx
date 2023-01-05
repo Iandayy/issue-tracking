@@ -1,15 +1,9 @@
-import Card from "../../components/Card";
-import IssueItem from "../common/IssueItem";
+import useIssueStatus from "../../hooks/useIssueStatus";
 
 const ToDo = ({ todoIssue }) => {
-  return (
-    <Card>
-      <h2>Todo</h2>
-      {todoIssue.map((issue) => (
-        <IssueItem key={Math.random()} issue={issue} />
-      ))}
-    </Card>
-  );
+  const ToDoStatus = useIssueStatus({ title: "ToDo", issues: todoIssue });
+
+  return <>{ToDoStatus}</>;
 };
 
 export default ToDo;
