@@ -3,9 +3,9 @@ import { useRecoilState } from "recoil";
 
 import { issueIdState } from "../../recoil/atom/issueIdState";
 
-import ModalPortal from "../../components/ModalPortal";
-import Update from "../crud/Update";
-import BackGround from "../../components/BackGround";
+// import ModalPortal from "../../components/ModalPortal";
+// import Update from "../crud/Update";
+// import BackGround from "../../components/BackGround";
 import Card from "../../components/Card";
 import Delete from "../crud/Delete";
 
@@ -17,6 +17,9 @@ const IssueItem = ({ issues, issueValue }) => {
     setIssueId(issueValue.id);
     setIssueRead((prev) => !prev);
   };
+
+  console.log(isIssueRead);
+  console.log(issueId);
 
   return (
     <>
