@@ -1,14 +1,19 @@
-import ToDo from "./ToDo";
-import Doing from "./Doing";
-import Done from "./Done";
+import { useRecoilValue } from "recoil";
+
+import { issueAllState } from "../../recoil/seletor/issueAllState";
+
+import ToDo from "../status/ToDo";
+import Doing from "../status/Doing";
+import Done from "../status/Done";
 
 const IssueStatus = () => {
+  const issueAll = useRecoilValue(issueAllState);
+
   return (
-    <div>
-      <h1>IssueStatus</h1>
-      <ToDo />
-      <Doing />
-      <Done />
+    <div className="flex justify-center m-1">
+      <ToDo todoIssue={issueAll.ToDo} />
+      <Doing doingIssue={issueAll.Doing} />
+      <Done doneIssue={issueAll.Done} />
     </div>
   );
 };
