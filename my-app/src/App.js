@@ -1,18 +1,11 @@
-import { RecoilRoot } from "recoil";
-import { Suspense } from "react";
-
 import Layout from "./containers/Layout";
-import Router from "./containers/Router";
+import IssueStatus from "./pages/status/IssueStatus";
 
 const App = () => {
   return (
-    <RecoilRoot>
-      <Suspense fallback={<p>Loding...</p>}>
-        <Layout>
-          <Router />
-        </Layout>
-      </Suspense>
-    </RecoilRoot>
+    <Layout>
+      <IssueStatus />
+    </Layout>
   );
 };
 

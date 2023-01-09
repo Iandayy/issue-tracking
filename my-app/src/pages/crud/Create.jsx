@@ -1,58 +1,69 @@
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 
-import instance from "../../service/request";
+import { v4 as uuidv4 } from "uuid";
 
-const Create = ({ title, isNewIssueHandler }) => {
-  const [inputValue, setInputValue] = useState("");
+import { issueAllState } from "../../recoil/atom/issueAllState";
 
-  const inputValueChangeHandler = (e) => {
-    setInputValue(e.target.value);
+import Button from "../../components/Button";
+
+const Create = ({ label, isCreateHandler }) => {
+  const [titieValue, setTitieValue] = useState("");
+  const [issue, setIssue] = useRecoilState(issueAllState);
+
+  const titleValueChangeHandler = (e) => {
+    setTitieValue(e.target.value);
   };
 
-  const submitHandler = async (e) => {
+  const cancelHandler = () => {
+    isCreateHandler(false);
+  };
+
+  const submitHandler = (e) => {
     e.preventDefault();
 
     const items = {
-      title: inputValue,
-      status: title,
+      id: uuidv4(),
+      status: label,
+      title: titieValue,
     };
 
-    try {
-      const res = await instance.post(`/status/${title}.json`, items);
-      console.log(res);
-      isNewIssueHandler(false);
-      window.location.replace("/");
-    } catch (err) {
-      console.log("err", err);
-    }
+    setIssue({
+      ...issue,
+      [label]: [...issue[label], items],
+    });
+
+    isCreateHandler(false);
   };
 
   return (
-    <form
-      onSubmit={submitHandler}
-      className="flex flex-col align-center my-2 bg-gray-200 w-full rounded"
-    >
+    <form className="flex flex-col align-center mt-4 mb-2 bg-gray-200 w-full rounded">
       <section className="flex justify-between p-2">
         <input
           id="title"
           name="title"
           type="text"
-          placeholder="Enter your titlte"
-          value={inputValue}
-          onChange={inputValueChangeHandler}
-          className="w-full h-12 p-1 rounded border"
+          placeholder="Enter your title"
+          value={titieValue}
+          onChange={titleValueChangeHandler}
+          className="w-full h-12 p-2 rounded"
         />
       </section>
-      <section className="flex justify-between pb-2 mx-2">
-        <button className="text-white bg-gray-400 hover:bg-gray-600 rounded p-1">
-          <span className="p-1 font-medium">Add Issue</span>
-        </button>
-        <button
-          className="text-white bg-gray-400 hover:bg-gray-600 rounded"
-          onClick={isNewIssueHandler}
+      <section className="flex justify-between p-2">
+        <Button
+          type="submit"
+          onClick={submitHandler}
+          className="text-white bg-gray-400 hover:bg-gray-800"
         >
-          <span className="p-1 font-medium">Cancel</span>
-        </button>
+          Add Issue
+        </Button>
+        <Button
+          type="button"
+          onClick={cancelHandler}
+          className="text-white bg-gray-400 hover:bg-gray-800"
+        >
+          Cancel
+        </Button>
       </section>
     </form>
   );

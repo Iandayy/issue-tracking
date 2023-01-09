@@ -3,8 +3,10 @@ import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist();
 
-export const issueIdState = atom({
-  key: "issueIdState",
-  default: "",
+export const issueInfoState = atom({
+  key: "issueInfoState",
+  default: { status: "", id: "" },
   effects_UNSTABLE: [persistAtom],
 });
+
+export default issueInfoState;
