@@ -8,7 +8,7 @@ const Done = () => {
   const issueAll = useRecoilValue(issueAllState);
 
   const DoneStatus = useIssueStatus({
-    title: "Done",
+    label: "Done",
     issues: issueAll.Done,
   });
 
