@@ -1,8 +1,8 @@
 const Card = (props) => {
   return (
     <article
-      className={`shadow-md rounded m-2 ${props.className}`}
       onClick={props.onClick}
+      className={`m-2 p-2 shadow-md rounded ${props.className}`}
     >
       {props.children}
     </article>

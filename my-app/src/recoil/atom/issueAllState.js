@@ -3,8 +3,10 @@ import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist();
 
-export const isNewIssueState = atom({
-  key: "isNewIssueState",
-  default: false,
+export const issueAllState = atom({
+  key: "issueAllState",
+  default: { ToDo: [], Doing: [], Done: [] },
   effects_UNSTABLE: [persistAtom],
 });
+
+export default issueAllState;

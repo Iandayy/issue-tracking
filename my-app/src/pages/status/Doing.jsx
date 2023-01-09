@@ -1,7 +1,17 @@
+import { useRecoilValue } from "recoil";
+
+import { issueAllState } from "../../recoil/atom/issueAllState";
+
 import useIssueStatus from "../../hooks/useIssueStatus";
 
-const Doing = ({ doingIssue }) => {
-  const DoingStatus = useIssueStatus({ title: "Doing", issues: doingIssue });
+const Doing = () => {
+  const issueAll = useRecoilValue(issueAllState);
+
+  const DoingStatus = useIssueStatus({
+    label: "Doing",
+    issues: issueAll.Doing,
+  });
+
   return <>{DoingStatus}</>;
 };
 
